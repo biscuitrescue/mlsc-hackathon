@@ -13,6 +13,8 @@ rooms = [
     {'id': 2, 'name': "Sign Up"},
     {'id': 3, 'name': "Main"},
     {'id': 4, 'name': "Prev"},
+    {'id': 5, 'name': "Wallet"},
+    {'id': 6, 'name': "Feedback"},
 ]
 
 
@@ -32,12 +34,14 @@ def room(request, pk):
     return render(request, 'base/room.html', context)
 
 
-@api_view(['GET', 'POST'])
+# @api_view(['GET', 'POST'])
 def student_list(request):
+
     if request.method == 'GET':
         students = Student.objects.all()
         serializer = StudentSerializer(students, many=True)
         return JsonResponse(serializer.data, safe=False)
+
     if request.method == 'POST':
         serializer = StudentSerializer(data=request.data)
         if serializer.is_valid():
@@ -45,14 +49,19 @@ def student_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'POST'])
 def stand_list(request):
+
     if request.method == 'GET':
         stands = Stand.objects.all()
         serializer = StandSerializer(stands, many=True)
         return JsonResponse(serializer.data, safe=False)
+
     if request.method == 'POST':
         serializer = StandSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+# def student_deets():
+#     pass
