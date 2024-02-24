@@ -32,7 +32,7 @@ def room(request, pk):
     return render(request, 'base/room.html', context)
 
 
-@api_view('GET', 'POST')
+@api_view(['GET', 'POST'])
 def student_list(request):
     if request.method == 'GET':
         students = Student.objects.all()
@@ -45,7 +45,7 @@ def student_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view('GET', 'POST')
+@api_view(['GET', 'POST'])
 def stand_list(request):
     if request.method == 'GET':
         stands = Stand.objects.all()
