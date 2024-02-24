@@ -1,10 +1,12 @@
 from django.shortcuts import render
+# from django.http import HttpResponse
+
 
 rooms = [
-    {'id': 1, 'name': ""},
-    {'id': 2, 'name': ""},
-    {'id': 3, 'name': ""},
-    {'id': 4, 'name': ""},
+    {'id': 1, 'name': "Log In"},
+    {'id': 2, 'name': "Sign Up"},
+    {'id': 3, 'name': "Main"},
+    {'id': 4, 'name': "Prev"},
 ]
 
 
@@ -22,11 +24,3 @@ def room(request, pk):
     context = {'room': room}
 
     return render(request, 'base/room.html', context)
-
-
-keyval = {
-    'cos': ['H', 'M', 'O', 'B', 'C', 'J', 'D', 'PG', 'Q', 'cos_market'],
-    'fete': [],
-    'main_gate': [],
-    'jaggi': ['Q', 'PG', ''],
-}
