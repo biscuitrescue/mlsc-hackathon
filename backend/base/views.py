@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Student, Stand
+from .serializer import StudentSerializer, StandSerializer
 # from django.http import HttpResponse
 
 
@@ -24,3 +27,15 @@ def room(request, pk):
     context = {'room': room}
 
     return render(request, 'base/room.html', context)
+
+
+def student_list(request):
+    students = Student.object.all()
+    serializer = StudentSerializer(students, many=True)
+    return JsonResponse(serializer.data)
+
+
+def stand_list(request):
+    stands = Stand.object.all()
+    serializer = StandSerializer(stands, many=True)
+    return JsonResponse(serializer.data)
