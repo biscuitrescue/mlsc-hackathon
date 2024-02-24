@@ -30,12 +30,12 @@ def room(request, pk):
 
 
 def student_list(request):
-    students = Student.object.all()
+    students = Student.objects.all()
     serializer = StudentSerializer(students, many=True)
-    return JsonResponse(serializer.data)
+    return JsonResponse(serializer.data, safe=False)
 
 
 def stand_list(request):
-    stands = Stand.object.all()
+    stands = Stand.objects.all()
     serializer = StandSerializer(stands, many=True)
-    return JsonResponse(serializer.data)
+    return JsonResponse(serializer.data, safe=False)

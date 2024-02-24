@@ -11,4 +11,4 @@ class StudentSerializer(serializers.ModelSerializer):
 class StandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stand
-        fields = ['name', 'roll', 'location']
+        fields = ['name', 'location']
