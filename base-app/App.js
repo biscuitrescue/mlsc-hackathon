@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
+  Image,
   StyleSheet,
   Text,
-  Image,
-  View,
   TextInput,
   TouchableOpacity,
+  View,
 } from "react-native";
+import React, { useState } from "react";
+
+import { StatusBar } from "expo-status-bar";
+
 // import { useFonts } from 'expo-fonts';
 
 export default function App() {
@@ -23,9 +25,25 @@ export default function App() {
         blurRadius={2}
       />
       <View style={styles.signInBox}>
-        <Text style={styles.signInText}>Sign In</Text>
+        <Text style={styles.signInText}>Sign Up</Text>
         <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.inputBox}
+          placeholder="Full Name"
+          placeholderTextColor="#7D8287"
+        />
+        <TextInput
+          style={styles.inputBox}
+          placeholder="Hostel"
+          placeholderTextColor="#7D8287"
+        />
           <TextInput
+            style={styles.inputBox}
+            placeholder="Thapar Mail Id"
+            placeholderTextColor="#7D8287"
+            secureTextEntry={true}
+          />
+        <TextInput
             style={styles.inputBox}
             placeholder="Username"
             placeholderTextColor="#7D8287"
@@ -36,14 +54,8 @@ export default function App() {
             placeholderTextColor="#7D8287"
             secureTextEntry={true}
           />
-          <TextInput
-            style={styles.inputBox}
-            placeholder="Confirm Password"
-            placeholderTextColor="#7D8287"
-            secureTextEntry={true}
-          />
         </View>
-        <TouchableOpacity style={styles.submitButton}>
+        <TouchableOpacity style={styles.submitButton} >
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>
@@ -55,13 +67,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "dodgerblue",
     alignItems: "center",
     justifyContent: "center",
   },
   image: {
     position: "absolute",
-    resizeMode: "contain",
+    resizeMode: "cover",
     width: "100%",
     height: "100%",
     opacity: 1, // Add slight opacity for overlay effect
