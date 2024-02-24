@@ -42,7 +42,7 @@ def student_list(request):
     if request.method == 'GET':
         students = Student.objects.all()
         serializer = StudentSerializer(students, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
 
     if request.method == 'POST':
         serializer = StudentSerializer(data=request.data)
@@ -58,7 +58,7 @@ def stand_list(request):
     if request.method == 'GET':
         stands = Stand.objects.all()
         serializer = StandSerializer(stands, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
 
     if request.method == 'POST':
         serializer = StandSerializer(data=request.data)
@@ -79,10 +79,6 @@ def student_deets(request, id):
     if request.method == 'GET':
         serializer = StudentSerializer(student)
         return Response(serializer.data)
-    # elif request.method == 'PUT':
-    #     pass
-    # elif request.method == 'DELETE':
-    #     pass
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
