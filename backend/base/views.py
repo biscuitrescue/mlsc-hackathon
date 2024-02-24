@@ -37,7 +37,7 @@ def room(request, pk):
 
 @api_view(['GET', 'POST'])
 @permission_classes([permissions.AllowAny])
-def student_list(request):
+def student_list(request, Format=None):
 
     if request.method == 'GET':
         students = Student.objects.all()
@@ -53,7 +53,7 @@ def student_list(request):
 
 @api_view(['GET', 'POST'])
 @permission_classes([permissions.AllowAny])
-def stand_list(request):
+def stand_list(request, Format=None):
 
     if request.method == 'GET':
         stands = Stand.objects.all()
@@ -69,7 +69,7 @@ def stand_list(request):
 
 @api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([permissions.AllowAny])
-def student_deets(request, id):
+def student_deets(request, id, Format=None):
 
     try:
         student = Student.objects.get(pk=id)
@@ -83,7 +83,7 @@ def student_deets(request, id):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([permissions.AllowAny])
-def stand_deets(request, id):
+def stand_deets(request, id, Format=None):
 
     try:
         stand = Stand.objects.get(pk=id)
