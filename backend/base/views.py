@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Student, Stand
 from .serializer import StudentSerializer, StandSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 # from django.http import HttpResponse
 
 
@@ -29,13 +32,27 @@ def room(request, pk):
     return render(request, 'base/room.html', context)
 
 
+@api_view('GET', 'POST')
 def student_list(request):
-    students = Student.objects.all()
-    serializer = StudentSerializer(students, many=True)
-    return JsonResponse(serializer.data, safe=False)
+    if request.method == 'GET':
+        students = Student.objects.all()
+        serializer = StudentSerializer(students, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    if request.method == 'POST':
+        serializer = StudentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view('GET', 'POST')
 def stand_list(request):
-    stands = Stand.objects.all()
-    serializer = StandSerializer(stands, many=True)
-    return JsonResponse(serializer.data, safe=False)
+    if request.method == 'GET':
+        stands = Stand.objects.all()
+        serializer = StandSerializer(stands, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    if request.method == 'POST':
+        serializer = StandSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
