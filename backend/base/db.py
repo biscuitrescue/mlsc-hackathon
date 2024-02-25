@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import mysql.connector as con
 
 
@@ -13,4 +15,4 @@ cur1 = obj.cursor()
 q1 = "select * from student"
 
 cur1.execute(q1)
-print(cur1.fetchall())
+print(cur1.fetchone())
