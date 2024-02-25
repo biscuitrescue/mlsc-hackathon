@@ -32,7 +32,7 @@ def wait(roll):
             location = i[2]
 
     if len(w_room) <= 4:
-
+        pass
 
     t1 = threading.Thread(lambda: sleep(30))
     t2 = threading.Thread(conti, args=(w_room, location))
