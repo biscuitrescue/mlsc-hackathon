@@ -11,4 +11,4 @@ urlpatterns = [
     path('students/<int:id>', views.student_deets, name='students_deets'),
     path('stand/<int:id>', views.stand_deets, name='stands_deets'),
 ]
-urlpattern= format_suffix_patterns(urlpatterns)
+urlpatterns= format_suffix_patterns(urlpatterns)
