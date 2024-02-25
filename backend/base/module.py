@@ -13,6 +13,10 @@ obj = con.connect(
 cur = obj.cursor()
 
 
+def message():
+    pass
+
+
 def conti(w_room, location):
     cur.execute("select * from stand")
     while True:
