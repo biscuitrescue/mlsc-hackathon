@@ -11,21 +11,34 @@ obj = con.connect(
 
 cur = obj.cursor()
 
-cur.execute("select * from student")
+
+def conti(w_room, location):
+    cur.execute("select * from stand")
+    data = cur.fecthall()
+    for i in data:
+        if i[2] == location:
+            driver = i[0]
+            ride = {driver: w_room}
 
 
-def conti(roll, id):
-    pass
-
-def wait(roll, id):
+def wait(roll):
+    w_room = []
+    cur.execute("select * from student")
     data = cur.fetchall()
+
     for i in data:
         if i[1] == roll:
-            t1 = threading.Thread(lambda: sleep(30))
-            t2 = threading.Thread(conti, args=(roll, id))
+            w_room.append(roll)
+            location = i[2]
 
-            t1.start()
-            t2.start()
+    if len(w_room) <= 4:
 
-            t1.join()
-            t2.join()
+
+    t1 = threading.Thread(lambda: sleep(30))
+    t2 = threading.Thread(conti, args=(w_room, location))
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()

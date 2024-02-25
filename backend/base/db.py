@@ -15,4 +15,5 @@ cur1 = obj.cursor()
 q1 = "select * from student"
 
 cur1.execute(q1)
-print(cur1.fetchone())
+l = cur1.fetchall()
+
