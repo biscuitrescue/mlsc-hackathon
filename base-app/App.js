@@ -1,3 +1,11 @@
+// ios 411424392116-l0d85tr9g5uctbocjms6j6mvngl3pr5a.apps.googleusercontent.com
+// android 411424392116-kbsqqf4agkdh280t19dl9qf9f22188ts.apps.googleusercontent.com
+
+import React, { useState } from 'react';
+import * as AuthSession from 'expo-auth-session';
+
+import GoogleSignInButton from './GoogleSignInButton';
+
 import {
   Image,
   StyleSheet,
@@ -5,17 +13,24 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Button,
 } from "react-native";
-import React, { useState } from "react";
 
 import { StatusBar } from "expo-status-bar";
 
+// const androidClientId = '411424392116-kbsqqf4agkdh280t19dl9qf9f22188ts.apps.googleusercontent.com';
+// const iosClientId = '411424392116-l0d85tr9g5uctbocjms6j6mvngl3pr5a.apps.googleusercontent.com';
+
 // import { useFonts } from 'expo-fonts';
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+
 
 export default function App() {
-  // const [fontsLoaded] = useFonts({
-  //   'Calistoga-Regular': require('./../assets/fonts/Calistoga-Regular.ttf'),
-  // });
+  let [fontsLoaded, fontError] = useFonts({
+    Inter_900Black,
+  });
+  
+  
 
   return (
     <View style={styles.container}>
@@ -60,6 +75,9 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <StatusBar style="auto" />
+      <GoogleSignInButton />
+
+      
     </View>
   );
 }
@@ -90,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginBottom: 20,
-    fontFamily: "monospace", // Use loaded font
+    fontFamily: "Inter_900Black", // Use loaded font
   },
   inputContainer: {
     alignItems: "center",
@@ -118,6 +136,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
-    fontFamily: "monospace", // Use loaded font
+    fontFamily: "Inter_900Black", // Use loaded font
   },
 });
