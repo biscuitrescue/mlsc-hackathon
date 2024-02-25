@@ -2,6 +2,7 @@ from time import sleep
 import threading
 import mysql.connector as con
 
+
 obj = con.connect(
     user='root',
     password='Pantera@101',
@@ -14,11 +15,15 @@ cur = obj.cursor()
 
 def conti(w_room, location):
     cur.execute("select * from stand")
-    data = cur.fecthall()
-    for i in data:
-        if i[2] == location:
-            driver = i[0]
+    while True:
+        data = cur.fetchone()
+        if data[2] == location:
+            driver = data[0]
             ride = {driver: w_room}
+
+    if ride not in locals():
+        conti(w_room, location)
+    return ride
 
 
 def wait(roll):
@@ -31,14 +36,20 @@ def wait(roll):
             w_room.append(roll)
             location = i[2]
 
-    if len(w_room) <= 4:
-        pass
+    if len(w_room) == 4:
+        conti(w_room, location)
+    elif len(w_room) == 3:
+        sleep(30)
+        conti(w_room, location)
+    elif len(w_room) < 3 and len(w_room) > 0:
+        sleep(60)
+        conti(w_room, location)
 
-    t1 = threading.Thread(lambda: sleep(30))
-    t2 = threading.Thread(conti, args=(w_room, location))
+    # t1 = threading.Thread(lambda: sleep(30))
+    # t2 = threading.Thread(conti, args=(w_room, location))
 
-    t1.start()
-    t2.start()
+    # t1.start()
+    # t2.start()
 
-    t1.join()
-    t2.join()
+    # t1.join()
+    # t2.join()
